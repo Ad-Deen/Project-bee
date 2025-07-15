@@ -1,0 +1,205 @@
+<?xml version="1.0"?>
+<robot name="bee">
+
+  <link name="dummy_link" />
+
+  <link name="base_link">
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <inertial>
+      <mass value="1.4509320"/>
+      <inertia ixx="0.02295" ixy="-0.000081038" ixz="0.0000000231" 
+               iyy="0.02295" iyz="0.0000000778" 
+               izz="0.04539" />
+    </inertial>
+    <visual name="base_link_vis">
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://bee/meshes/drone_base.dae" scale="0.01 0.01 0.01"/>
+      </geometry>
+    </visual>
+    <collision name="base_link_collision_0">
+      <origin xyz="0 0 -0.0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://bee/meshes/drone_base.dae" scale="0.01 0.01 0.01"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="fixed_joint" type="fixed">
+    <parent link="dummy_link"/>
+    <child link="base_link"/>
+  </joint>
+
+  <!-- Rotor 1 -->
+  <link name="rod_1">
+    <inertial>
+      <mass value="0.001"/>
+      <inertia ixx="0.00000001" ixy="0.0" ixz="0.0" iyy="0.00000001" iyz="0.0" izz="0.00000001"/>
+    </inertial>
+  </link>
+  
+  <link name="blade_1">
+    <inertial>
+      <mass value="0.012"/>
+      <inertia ixx="6e-7" ixy="-1e-6" ixz="1.0e-10" iyy="3e-5" iyz="0.0" izz="3e-5"/>
+    </inertial>
+    <visual>
+      <geometry>
+        <mesh filename="package://bee/meshes/propeller_11.75cm.obj" scale="0.01 0.01 0.01"/>
+      </geometry>
+    </visual>
+  </link>
+
+  <link name="blade_2">
+    <inertial>
+      <mass value="0.012"/>
+      <inertia ixx="6e-7" ixy="-1e-6" ixz="1.0e-10" iyy="3e-5" iyz="0.0" izz="3e-5"/>
+    </inertial>
+  </link>
+
+  <joint name="rod_1_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="rod_1"/>
+    <axis xyz="0 0 1"/>
+  </joint>
+  
+  <joint name="blade_1_joint" type="fixed">
+    <parent link="rod_1"/>
+    <child link="blade_1"/>
+  </joint>
+  
+  <joint name="blade_2_joint" type="fixed">
+    <parent link="rod_1"/>
+    <child link="blade_2"/>
+  </joint>
+
+  <!-- Rotor 2 -->
+  <link name="rod_2">
+    <inertial>
+      <mass value="0.001"/>
+      <inertia ixx="0.00000001" ixy="0.0" ixz="0.0" iyy="0.00000001" iyz="0.0" izz="0.00000001"/>
+    </inertial>
+  </link>
+
+  <link name="blade_3">
+    <inertial>
+      <mass value="0.012"/>
+      <inertia ixx="6e-7" ixy="-1.6e-6" ixz="1.0e-10" iyy="3e-5" iyz="0.0" izz="3e-5"/>
+    </inertial>
+    <visual>
+      <geometry>
+        <mesh filename="package://bee/meshes/propeller_11.75cm.obj" scale="0.01 0.01 0.01"/>
+      </geometry>
+    </visual>
+  </link>
+
+  <link name="blade_4">
+    <inertial>
+      <mass value="0.012"/>
+      <inertia ixx="6e-7" ixy="-1.6e-6" ixz="1.0e-10" iyy="3e-5" iyz="0.0" izz="3e-5"/>
+    </inertial>
+  </link>
+
+  <joint name="rod_2_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="rod_2"/>
+    <axis xyz="0 0 1"/>
+  </joint>
+
+  <joint name="blade_3_joint" type="fixed">
+    <parent link="rod_2"/>
+    <child link="blade_3"/>
+  </joint>
+
+  <joint name="blade_4_joint" type="fixed">
+    <parent link="rod_2"/>
+    <child link="blade_4"/>
+  </joint>
+
+  <!-- Rotor 3 -->
+  <link name="rod_3">
+    <inertial>
+      <mass value="0.001"/>
+      <inertia ixx="0.00000001" ixy="0.0" ixz="0.0" iyy="0.00000001" iyz="0.0" izz="0.00000001"/>
+    </inertial>
+  </link>
+
+  <link name="blade_5">
+    <inertial>
+      <mass value="0.012"/>
+      <inertia ixx="6e-7" ixy="-1.6e-6" ixz="1.0e-10" iyy="3e-5" iyz="0.0" izz="3e-5"/>
+    </inertial>
+    <visual>
+      <geometry>
+        <mesh filename="package://bee/meshes/propeller_11.75cm.obj" scale="0.01 0.01 0.01"/>
+      </geometry>
+    </visual>
+  </link>
+
+  <link name="blade_6">
+    <inertial>
+      <mass value="0.012"/>
+      <inertia ixx="6e-7" ixy="-1e-6" ixz="1.0e-10" iyy="3e-5" iyz="0.0" izz="3e-5"/>
+    </inertial>
+  </link>
+
+  <joint name="rod_3_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="rod_3"/>
+    <axis xyz="0 0 -1"/>
+  </joint>
+
+  <joint name="blade_5_joint" type="fixed">
+    <parent link="rod_3"/>
+    <child link="blade_5"/>
+  </joint>
+
+  <joint name="blade_6_joint" type="fixed">
+    <parent link="rod_3"/>
+    <child link="blade_6"/>
+  </joint>
+
+  <!-- Rotor 4 -->
+  <link name="rod_4">
+    <inertial>
+      <mass value="0.001"/>
+      <inertia ixx="0.00000001" ixy="0.0" ixz="0.0" iyy="0.00000001" iyz="0.0" izz="0.00000001"/>
+    </inertial>
+  </link>
+
+  <link name="blade_7">
+    <inertial>
+      <mass value="0.012"/>
+      <inertia ixx="6e-7" ixy="-1.6e-6" ixz="1.0e-10" iyy="3e-5" iyz="0.0" izz="3e-5"/>
+    </inertial>
+    <visual>
+      <geometry>
+        <mesh filename="package://bee/meshes/propeller_11.75cm.obj" scale="0.01 0.01 0.01"/>
+      </geometry>
+    </visual>
+  </link>
+
+  <link name="blade_8">
+    <inertial>
+      <mass value="0.012"/>
+      <inertia ixx="6e-7" ixy="-1.6e-6" ixz="1.0e-10" iyy="3e-5" iyz="0.0" izz="3e-5"/>
+    </inertial>
+  </link>
+
+  <joint name="rod_4_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="rod_4"/>
+    <axis xyz="0 0 -1"/>
+  </joint>
+
+  <joint name="blade_7_joint" type="fixed">
+    <parent link="rod_4"/>
+    <child link="blade_7"/>
+  </joint>
+
+  <joint name="blade_8_joint" type="fixed">
+    <parent link="rod_4"/>
+    <child link="blade_8"/>
+  </joint>
+
+</robot>
